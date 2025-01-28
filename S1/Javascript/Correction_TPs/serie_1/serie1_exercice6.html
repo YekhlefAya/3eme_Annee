@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercice - Bonjour et Date</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 50px;
+      }
+      .question {
+        margin-bottom: 20px;
+        width: 70%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+      }
+      #date,
+      #greeting,
+      #greetingManual,
+      #dayOfWeek {
+        font-weight: bold;
+        color: #6a0dad;
+      }
+      button {
+        margin: 5px;
+        padding: 10px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="question">
+      <h2>Question 1</h2>
+      <p>Nous sommes le :</p>
+      <p id="date"></p>
+      <button onclick="showDate()">Date</button>
+    </div>
+
+    <div class="question">
+      <h2>Question 2</h2>
+      <p>Cher lecteur,</p>
+      <p id="greeting"></p>
+      <button onclick="greetingByTime()">Bonjour1</button>
+    </div>
+
+    <div class="question">
+      <h2>Question 3</h2>
+      <p>... et même plus précisément :</p>
+      <p id="greetingManual"></p>
+      <input
+        type="number"
+        id="hourInput"
+        placeholder="Entrez une heure (0-23)"
+        oninput="validateHour()"
+      />
+      <button onclick="greetingByManualTime()">Bonjour2</button>
+    </div>
+
+    <div class="question">
+      <h2>Question 4</h2>
+      <p>Aujourd'hui, nous sommes un :</p>
+      <p id="dayOfWeek"></p>
+      <button onclick="showDayOfWeek()">Jour dans la semaine</button>
+    </div>
+
+    <script>
+      function showDate() {
+        const now = new Date();
+        const days = [
+          "Dimanche",
+          "Lundi",
+          "Mardi",
+          "Mercredi",
+          "Jeudi",
+          "Vendredi",
+          "Samedi",
+        ];
+        const months = [
+          "Janvier",
+          "Février",
+          "Mars",
+          "Avril",
+          "Mai",
+          "Juin",
+          "Juillet",
+          "Août",
+          "Septembre",
+          "Octobre",
+          "Novembre",
+          "Décembre",
+        ];
+        const dayName = days[now.getDay()];
+        const day = now.getDate();
+        const month = months[now.getMonth()];
+        const year = now.getFullYear();
+        const hours = now.getHours();
+        const minutes = now.getMinutes();
+        const seconds = now.getSeconds();
+
+        const formattedDate = `${dayName} ${day} ${month} ${year} à ${hours}h${minutes}m${seconds}s`;
+        document.getElementById("date").innerText = formattedDate;
+      }
+
+      function greetingByTime() {
+        const hour = new Date().getHours();
+        const greeting =
+          hour < 5
+            ? "Bonne nuit"
+            : hour < 12
+            ? "Bonjour"
+            : hour < 18
+            ? "Bon après-midi"
+            : hour < 22
+            ? "Bonne soirée"
+            : "Bonne nuit";
+        document.getElementById("greeting").innerText = greeting;
+      }
+
+      function validateHour() {
+        const hourInput = document.getElementById("hourInput");
+        if (hourInput.value > 23) hourInput.value = 23;
+        if (hourInput.value < 0) hourInput.value = 0;
+      }
+
+      function greetingByManualTime() {
+        const hour = parseInt(document.getElementById("hourInput").value);
+        const greeting =
+          hour < 5
+            ? "Bonne nuit"
+            : hour < 12
+            ? "Bonjour"
+            : hour < 18
+            ? "Bon après-midi"
+            : hour < 22
+            ? "Bonne soirée"
+            : "Bonne nuit";
+
+        document.getElementById("greetingManual").innerText = greeting;
+      }
+      function showDayOfWeek() {
+        const days = [
+          "Dimanche",
+          "Lundi",
+          "Mardi",
+          "Mercredi",
+          "Jeudi",
+          "Vendredi",
+          "Samedi",
+        ];
+        document.getElementById("dayOfWeek").innerText =
+          days[new Date().getDay()];
+      }
+    </script>
+  </body>
+</html>

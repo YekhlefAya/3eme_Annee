@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mini Cart App</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Add to cart</h1>
+      <input type="text" id="newProduct" placeholder="Add new Product" />
+      <input type="number" id="price" placeholder="Price" />
+      <button id="btnAdd">Add to cart</button>
+    </div>
+
+    <div class="container">
+      <h1>Shopping Cart</h1>
+      <div class="products">
+        <div class="product" data-id="1">
+          <h2>Product 1</h2>
+          <p>Price: $10</p>
+          <button class="add-to-cart">Add to Cart</button>
+        </div>
+        <div class="product" data-id="2">
+          <h2>Product 2</h2>
+          <p>Price: $15</p>
+          <button class="add-to-cart">Add to Cart</button>
+        </div>
+        <div class="product" data-id="3">
+          <h2>Product 3</h2>
+          <p>Price: $20</p>
+          <button class="add-to-cart">Add to Cart</button>
+        </div>
+      </div>
+      <h2>Cart</h2>
+      <div class="cart">
+        <ul id="cart-items"></ul>
+        <p id="total-price">Total: $0</p>
+      </div>
+    </div>
+    <div class="container">
+      <button id="clearAll">Clear All</button>
+      <button id="clearCart">Clear Cart</button>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>

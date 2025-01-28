@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculer le périmètre d'un rectangle</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 50px;
+      }
+      input,
+      button {
+        padding: 10px;
+        margin: 10px;
+        font-size: 16px;
+      }
+      .result {
+        font-weight: bold;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Calculer le périmètre d'un rectangle</h1>
+    <input type="number" id="longueur" placeholder="Longueur" />
+    <input type="number" id="largeur" placeholder="Largeur" />
+    <button onclick="calculerPerimetre()">Calculer le périmètre</button>
+
+    <p id="resultat" class="result"></p>
+
+    <script>
+      function calculerPerimetre() {
+        const longueur = parseFloat(document.getElementById("longueur").value);
+        const largeur = parseFloat(document.getElementById("largeur").value);
+        const resultat = document.getElementById("resultat");
+
+        if (
+          isNaN(longueur) ||
+          isNaN(largeur) ||
+          longueur <= 0 ||
+          largeur <= 0
+        ) {
+          resultat.innerHTML =
+            "Veuillez entrer des valeurs valides pour la longueur et la largeur.";
+        } else {
+          const perimetre = 2 * (longueur + largeur);
+          resultat.innerHTML = `Le périmètre du rectangle est ${perimetre}`;
+        }
+      }
+    </script>
+  </body>
+</html>

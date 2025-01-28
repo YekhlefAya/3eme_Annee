@@ -1,0 +1,8 @@
+#quizApp {
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+#quizOptions button {
+  margin: 5px;
+}

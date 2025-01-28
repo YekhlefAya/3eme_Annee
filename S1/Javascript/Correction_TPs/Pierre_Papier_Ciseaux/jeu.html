@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeu de Pierre-Papier-Ciseaux</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Jeu de Pierre-Papier-Ciseaux</h1>
+    <p>Sélectionnez une option :</p>
+    
+    <div class="buttons">
+        <button class="choice" onclick="playGame('pierre')">Pierre</button>
+        <button class="choice" onclick="playGame('papier')">Papier</button>
+        <button class="choice" onclick="playGame('ciseaux')">Ciseaux</button>
+    </div>
+
+    <!-- Afficher les resultats -->
+    <div class="result">
+        <div id="user" class="player">
+            <h3>Vous</h3>
+            <p id="userChoice">-</p>
+        </div>
+        <div id="computer" class="player">
+            <h3>Ordinateur</h3>
+            <p id="computerChoice">-</p>
+        </div>
+    </div>
+
+    <div id="message" class="message"></div>
+    
+    <div class="score">
+        <p>Score :</p>
+        <p id="score">0 - 0</p>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

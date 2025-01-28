@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Répertoire Téléphonique</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+      .container {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+      }
+      h1 {
+        text-align: center;
+      }
+      button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        background-color: blueviolet;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: blueviolet;
+      }
+      input {
+        width: 95%;
+        padding: 8px;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Répertoire Téléphonique</h1>
+
+      <div id="formulaire">
+        <input type="text" id="nomContact" placeholder="Nom de l'ami" />
+        <input
+          type="text"
+          id="numeroContact"
+          placeholder="Numéro de téléphone"
+        />
+        <button onclick="ajouterContact()">Ajouter Contact</button>
+      </div>
+
+      <button onclick="listerContacts()">Liste des contacts</button>
+      <button onclick="rechercheContact()">Recherche d'un numéro</button>
+      <button onclick="supprimerContact()">Supprimer un contact</button>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

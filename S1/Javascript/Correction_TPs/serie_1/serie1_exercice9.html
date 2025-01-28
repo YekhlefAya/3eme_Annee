@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Compter le nombre de voyelles</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 50px;
+      }
+      input,
+      button {
+        padding: 10px;
+        margin: 10px;
+        font-size: 16px;
+      }
+      .result {
+        font-weight: bold;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Compter le nombre de voyelles</h1>
+    <input type="text" id="chaine" placeholder="Entrez une chaîne" />
+    <button onclick="compterVoyelles()">Compter les voyelles</button>
+
+    <p id="resultat" class="result"></p>
+
+    <script>
+      function compterVoyelles() {
+        const chaine = document.getElementById("chaine").value.toLowerCase();
+        const voyelles = ["a", "e", "i", "o", "u"];
+        let compteur = 0;
+        let listeVoyelles = [];
+
+        for (let char of chaine) {
+          if (voyelles.includes(char)) {
+            compteur++;
+            listeVoyelles.push(char);
+          }
+        }
+
+        const resultat = document.getElementById("resultat");
+        resultat.innerHTML = `Le nombre de voyelles dans "${chaine}" est ${compteur}.<br>Les listeVoyelleses sont: 
+        ${listeVoyelles.join()}.`;
+      }
+    </script>
+  </body>
+</html>

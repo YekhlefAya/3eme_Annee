@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Salutation Personnalisée</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        margin-top: 50px;
+      }
+      .container {
+        width: 50%;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        text-align: left;
+      }
+      label {
+        font-weight: bold;
+        display: block;
+        margin-top: 10px;
+      }
+      input {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      button {
+        margin-top: 15px;
+        padding: 10px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+        border: none;
+        background-color: #4caf50;
+        color: white;
+      }
+      .message {
+        margin-top: 20px;
+        font-weight: bold;
+      }
+      .error {
+        color: red;
+      }
+      .success {
+        color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Exercice 1 : Salutation Personnalisée</h1>
+      <label for="prenom">Prénom :</label>
+      <input type="text" id="prenom" placeholder="Entrez votre prénom" />
+
+      <label for="nom">Nom :</label>
+      <input type="text" id="nom" placeholder="Entrez votre nom" />
+
+      <label for="age">Âge :</label>
+      <input type="number" id="age" placeholder="Entrez votre âge" />
+
+      <label for="profession">Profession :</label>
+      <input
+        type="text"
+        id="profession"
+        placeholder="Entrez votre profession"
+      />
+
+      <button onclick="saluer()">Saluer</button>
+
+      <p id="message" class="message"></p>
+    </div>
+
+    <script>
+      function saluer() {
+        // Get input values
+        const prenom = document.getElementById("prenom").value.trim();
+        const nom = document.getElementById("nom").value.trim();
+        const age = document.getElementById("age").value.trim();
+        const profession = document.getElementById("profession").value.trim();
+        const message = document.getElementById("message");
+
+        // Validation
+        if (!prenom || !nom || !age || !profession) {
+          message.innerHTML = "Tous les champs doivent être remplis!";
+          message.style.color = "red";
+        } else if (isNaN(age) || age <= 0) {
+          message.innerHTML =
+            "L'âge doit être un nombre valide et supérieur à 0.";
+          message.style.color = "red";
+        } else {
+          // Display greeting message
+          message.innerHTML = `'Bonjour ${prenom} ${nom}! Vous avez ${age} ans et vous êtes ${profession}.`;
+          message.style.color = "green";
+        }
+      }
+    </script>
+  </body>
+</html>

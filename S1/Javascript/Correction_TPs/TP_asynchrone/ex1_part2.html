@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width , initial-scale=1.0" />
+    <title>Formulaire de Connexion avec Temporisation</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+      input {
+        margin-bottom: 10px;
+        padding: 8px;
+        width: 100%;
+        max-width: 300px;
+      }
+      button {
+        padding: 10px 20px;
+        margin-top: 10px;
+      }
+      #message {
+        color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h1>Ajouter administrateur</h1>
+      <input
+        type="text"
+        id="newUsername"
+        placeholder="Nom d'utilisateur"
+        required
+      />
+      <input
+        type="password"
+        id="newPassword"
+        placeholder="Mot de passe"
+        required
+      />
+      <button type="button" onclick="addAdmin()">Ajouter</button><br /><br />
+      <p id="message"></p>
+    </div>
+    <h1>Formulaire de Connexion</h1>
+    <input type="text" id="username" placeholder="Nom d'utilisateur" required />
+    <input type="password" id="password" placeholder="Mot de passe" required />
+    <button type="button" onclick="connect()">Se connecter</button><br /><br />
+    <div id="welcome"></div>
+    <script>
+      var admins = [];
+      function addAdmin() {
+        let user = document.getElementById("newUsername").value;
+        let pass = document.getElementById("newPassword").value;
+        if (user === "" || pass === "") {
+          alert("Veuillez entrer un Nom d'utilisateur et Mot de passe valide.");
+          return;
+        }
+        // Vérification si l'administrateur existe déjà
+        const exists = admins.some((admin) => admin.nom === user);
+        if (exists) {
+          alert("Cet administrateur existe déjà !");
+          return;
+        }
+        // Ajouter l'administrateur à la liste
+        admins.push({ nom: user, password: pass });
+        document.getElementById("newUsername").value = "";
+        document.getElementById("newPassword").value = "";
+        // Affichage du message de succès
+        document.getElementById(
+          "message"
+        ).textContent = `Le nouvel administrateur ${user} a bien été ajouté !`;
+        // Réinitialiser le message après 3 secondes
+        setTimeout(() => {
+          document.getElementById("message").textContent = "";
+        }, 3000);
+      }
+      function connect() {
+        let user = document.getElementById("username").value;
+        let pass = document.getElementById("password").value;
+        if (user === "" || pass === "") {
+          alert("Veuillez entrer un Nom d'utilisateur et Mot de passe valide.");
+          return;
+        }
+        // Appel de la fonction de validation avec promesse
+        validerUtilisateur(user, pass)
+          .then((result) => {
+            document.getElementById("welcome").textContent = result; // Affichage du résultat
+          })
+          .catch((error) => {
+            document.getElementById("welcome").textContent = error; // Affichage du message d'erreur
+          });
+      }
+      function validerUtilisateur(user, pass) {
+        return new Promise((resolve, reject) => {
+          let found = false; // Indicateur pour savoir si un utilisateur est trouvé
+          // Vérification des utilisateurs
+          admins.forEach((admin) => {
+            if (admin.nom === user && admin.password === pass) {
+              resolve(`Connexion réussie, bienvenue ${user}!`);
+              found = true;
+              // Sortir de la fonction forEach dès qu'une correspondance est trouvée
+              return;
+            }
+          });
+          // Si l'utilisateur n'a pas été trouvé, rejeter la promesse
+          if (!found) {
+            reject("Nom d'utilisateur ou mot de passe incorrect.");
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
