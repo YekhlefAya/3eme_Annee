@@ -1,0 +1,74 @@
+#include <iostream>
+
+using namespace std;
+
+class Personnel {
+protected :
+    string nom, prenom;
+    int age, id;
+public :
+    Personnel(const string& nom, const string& p,  int a, int id):nom(nom),prenom(p),age(a),id(id) { }
+    Personnel (const Personnel& sr) : nom(sr.nom),prenom(sr.prenom),age(sr.age),id(sr.id) {}
+    virtual ~Personnel() = default;
+    virtual void afficherInfos()  = 0;
+    string getNom() { return nom;}
+};
+class Etudiant : public Personnel{
+        string nivEtu;
+        double mygen;
+        int nbrM;
+public :
+Etudiant(const string& n, const string& p,  int a, int id,const string& niv, double mg, int nbrM ) : Personnel(n,p,a,id), nivEtu(niv), mygen(mg), nbrM(nbrM)
+        { }
+void fct() { cout << "  7ayed Tel w tebee3 " << endl;}
+Etudiant (const Etudiant& sr):Personnel(sr){
+        this->nivEtu= sr.nivEtu; mygen= sr.mygen; nbrM=sr.nbrM;
+}
+string getNivEtu () { return nivEtu;}
+~Etudiant() { cout << "Destr Etud \n";}
+void afficherInfos()  override {
+    cout << nom << " et " << nivEtu << " \n" ; }
+};
+    ostream& operator<<(ostream& jad, Etudiant& e) {
+        jad << e.getNom() << " | " << e.getNivEtu() << endl;
+        return jad;
+}
+class Professeur : public Personnel {
+    string grade, Dept; int nbrH;
+public :
+    static int  nbrProf;
+    Professeur(const string& n, const string& p,  int a, int id,const string& grade, string dept, int nbrH ):Personnel(n,p,a,id){
+        this->grade=grade; this->Dept=dept; this->nbrH=nbrH; nbrProf ++;
+    }
+    ~Professeur() { cout << "Dest Prof \n";}
+    void afficherInfos()  override {
+        cout << nom << " et " << grade << " \n" ; }
+    friend ostream& operator<< (ostream& mehdi, Professeur& p){
+            mehdi << p.grade << " | " << p.getNom() << endl;
+    }
+};
+    int Professeur::nbrProf = 0;
+
+
+
+
+
+
+int main()
+{
+    Etudiant e1 ("Amine", "Adnane",18,20,"3iiR",16,6);
+    cout << e1; e1.afficherInfos();
+    Professeur p1("Mehdi", "OKK",18,20, "P_H", "INFO", 20);
+    cout << p1;
+    cout<< " ************************* \n";
+    Personnel* ptr= &e1; ptr->afficherInfos();
+    Personnel& r= e1; r.afficherInfos();
+    dynamic_cast<Etudiant &>(r).fct();
+    Personnel* p2 = new Professeur("Mehdi", "OKK",18,20, "P_H", "INFO", 20);
+        cout<< " ************************* \n";
+
+    p2->afficherInfos();
+
+    delete p2;
+    return 0;
+}
